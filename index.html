@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Молодёжка о времени и внимании: тест, эксперимент и жизнь в клеточках.">
+<meta property="og:title" content="Где твоё внимание?">
+<meta property="og:description" content="Пройди по станциям вместе с ведущим.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Внимание">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👀</text></svg>">
+<title>Где твоё внимание</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;600;700;800&display=swap">
+<style>
+/* iOS-flavoured, phone-first. Host talks in iMessage bubbles; each station is a big card. */
+:root{
+  --bg:#F2F2F7; --card:#FFFFFF; --card2:#F7F7FA; --ink:#000000; --ink2:#3C3C43; --muted:#6C6C70; --sep:rgba(60,60,67,.14);
+  --fill:rgba(118,118,128,.12); --fill2:rgba(118,118,128,.2);
+  --blue:#007AFF; --blue-soft:rgba(0,122,255,.12); --green:#34C759; --red:#FF3B30; --orange:#FF9500; --pink:#FF2D55; --purple:#AF52DE; --indigo:#5856D6; --cyan:#32ADE6; --yellow:#E8A400;
+  --recv:#E9E9EB; --recv-ink:#000; --sent:#007AFF;
+  --glass:rgba(249,249,251,.72); --glass-line:rgba(0,0,0,.08);
+  --banner:rgba(245,245,247,.82);
+  --shade:rgba(0,0,0,.35);
+  --grad:linear-gradient(120deg,#6E5BFF 0%,#C847FF 35%,#FF3D8B 65%,#FF9A3C 100%);
+  --blob1:rgba(124,92,255,.22); --blob2:rgba(255,61,139,.16); --blob3:rgba(0,170,255,.16);
+  --c-past:#AEAEB2; --c-sleep:#5856D6; --c-food:#32ADE6; --c-work:#AF52DE; --c-road:#FF9500; --c-screen:#FF2D55; --c-free:#34C759;
+  --t-beg:#007AFF; --t-mar:#FF6B00; --t-svy:#25A244; --t-afi:#8E44D9; --t-isa:#D99400; --t-dav:#E8256A;
+  --f-display:"Unbounded", -apple-system, system-ui, sans-serif;
+  --f-body:-apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", Roboto, system-ui, sans-serif;
+  --shadow:0 1px 2px rgba(0,0,0,.04), 0 8px 30px rgba(20,20,60,.06);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#000000; --card:#1C1C1E; --card2:#232325; --ink:#FFFFFF; --ink2:#EBEBF5; --muted:#98989F; --sep:rgba(84,84,88,.55);
+  --fill:rgba(118,118,128,.24); --fill2:rgba(118,118,128,.36);
+  --blue:#0A84FF; --blue-soft:rgba(10,132,255,.2); --green:#30D158; --red:#FF453A; --orange:#FF9F0A; --pink:#FF375F; --purple:#BF5AF2; --indigo:#5E5CE6; --cyan:#64D2FF; --yellow:#FFD60A;
+  --recv:#262629; --recv-ink:#fff; --sent:#0A84FF;
+  --glass:rgba(22,22,24,.7); --glass-line:rgba(255,255,255,.08);
+  --banner:rgba(50,50,54,.78);
+  --shade:rgba(0,0,0,.6);
+  --blob1:rgba(124,92,255,.28); --blob2:rgba(255,61,139,.18); --blob3:rgba(0,140,255,.18);
+  --c-past:#636366; --c-sleep:#5E5CE6; --c-food:#64D2FF; --c-work:#BF5AF2; --c-road:#FF9F0A; --c-screen:#FF375F; --c-free:#30D158;
+  --t-beg:#0A84FF; --t-mar:#FF8A3D; --t-svy:#30D158; --t-afi:#BF5AF2; --t-isa:#FFD60A; --t-dav:#FF5C8D;
+  --shadow:none;
+  color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#000000; --card:#1C1C1E; --card2:#232325; --ink:#FFFFFF; --ink2:#EBEBF5; --muted:#98989F; --sep:rgba(84,84,88,.55);
+  --fill:rgba(118,118,128,.24); --fill2:rgba(118,118,128,.36);
+  --blue:#0A84FF; --blue-soft:rgba(10,132,255,.2); --green:#30D158; --red:#FF453A; --orange:#FF9F0A; --pink:#FF375F; --purple:#BF5AF2; --indigo:#5E5CE6; --cyan:#64D2FF; --yellow:#FFD60A;
+  --recv:#262629; --recv-ink:#fff; --sent:#0A84FF;
+  --glass:rgba(22,22,24,.7); --glass-line:rgba(255,255,255,.08);
+  --banner:rgba(50,50,54,.78);
+  --shade:rgba(0,0,0,.6);
+  --blob1:rgba(124,92,255,.28); --blob2:rgba(255,61,139,.18); --blob3:rgba(0,140,255,.18);
+  --c-past:#636366; --c-sleep:#5E5CE6; --c-food:#64D2FF; --c-work:#BF5AF2; --c-road:#FF9F0A; --c-screen:#FF375F; --c-free:#30D158;
+  --t-beg:#0A84FF; --t-mar:#FF8A3D; --t-svy:#30D158; --t-afi:#BF5AF2; --t-isa:#FFD60A; --t-dav:#FF5C8D;
+  --shadow:none;
+  color-scheme:dark }
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.45;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;overflow-x:hidden;
+  padding-bottom:env(safe-area-inset-bottom,0px)}
+body::before{content:"";position:fixed;inset:-20vh -20vw auto -20vw;height:90vh;z-index:-1;pointer-events:none;
+  background:radial-gradient(40% 50% at 20% 30%,var(--blob1),transparent 70%),radial-gradient(35% 40% at 85% 20%,var(--blob2),transparent 70%),radial-gradient(40% 45% at 60% 75%,var(--blob3),transparent 70%)}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+button{font:inherit;color:inherit;-webkit-user-select:none;user-select:none}
+img{max-width:100%}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:10px}
+.wrap{max-width:600px;margin:0 auto;padding-inline:16px;padding-bottom:40px}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+
+/* ---------- top bar ---------- */
+.topbar{position:sticky;top:0;z-index:10;padding-top:env(safe-area-inset-top,0px);background:var(--glass);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--glass-line)}
+.topbar-in{max-width:600px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:10px 16px}
+.logo{font-family:var(--f-display);font-weight:700;font-size:15px;letter-spacing:-.02em;white-space:nowrap;text-decoration:none;color:var(--ink)}
+.logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo .short{display:none;font-size:22px}
+@media (max-width:520px){ .logo .long{display:none} .logo .short{display:inline;background:none;color:inherit} }
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-left:auto;padding:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:999px;background:var(--fill);color:var(--ink2);font-size:13px;font-weight:600;text-decoration:none;transition:background .2s,color .2s}
+.chip b{font-family:var(--f-display);font-size:10px;opacity:.6}
+.chip.on{background:var(--ink);color:var(--bg)}
+.chip.on b{opacity:.7}
+
+/* ---------- hero ---------- */
+.hero{padding:34px 0 8px;display:grid;gap:22px}
+.badge{display:inline-flex;align-items:center;gap:8px;justify-self:start;padding:6px 12px 6px 6px;border-radius:999px;background:var(--card);box-shadow:var(--shadow);font-size:13px;font-weight:600;color:var(--ink2);border:.5px solid var(--sep)}
+.badge i{width:22px;height:22px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-style:normal;font-size:12px}
+.hero h1{font-family:var(--f-display);font-weight:800;font-size:clamp(40px,12vw,64px);line-height:1;letter-spacing:-.045em}
+.grad-text{background:var(--grad);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s ease-in-out infinite alternate}
+@keyframes shine{to{background-position:100% 0}}
+.cta{justify-self:start}
+
+/* ---------- iMessage bubbles ---------- */
+.thread{display:flex;flex-direction:column;gap:2px;padding-left:10px;padding-right:10px}
+.from{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin:0 0 4px -2px;font-weight:500}
+.ava{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:12px;background:linear-gradient(180deg,#A5ABB8,#858994)}
+.ava.host{background:var(--grad);font-size:14px}
+.b{position:relative;max-width:82%;padding:8px 13px 9px;border-radius:19px;font-size:17px;line-height:1.32;overflow-wrap:break-word;width:fit-content}
+.b.in{background:var(--recv);color:var(--recv-ink);align-self:flex-start}
+.b.out{background:var(--sent);color:#fff;align-self:flex-end}
+.b.tail::before{content:"";position:absolute;bottom:0;width:17px;height:21px;background:inherit;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 21'%3E%3Cpath d='M6 0H17V21C13.5 21 11 20.2 9.3 18.8C7 20.3 3.6 21.1 0 20.9C3.4 18.6 6 14.6 6 8Z'/%3E%3C/svg%3E") no-repeat center/100% 100%;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 21'%3E%3Cpath d='M6 0H17V21C13.5 21 11 20.2 9.3 18.8C7 20.3 3.6 21.1 0 20.9C3.4 18.6 6 14.6 6 8Z'/%3E%3C/svg%3E") no-repeat center/100% 100%}
+.b.in.tail::before{left:-6px}
+.b.out.tail::before{right:-6px;transform:scaleX(-1)}
+.b.tail{margin-bottom:8px}
+.b .ref{display:block;font-size:13px;opacity:.6;margin-top:3px}
+.b.big-emoji{background:none!important;font-size:44px;padding:0 4px;line-height:1.1}
+.b.big-emoji::before{display:none}
+.stamp{align-self:center;font-size:12px;color:var(--muted);margin:6px 0 8px;font-weight:500}
+.stamp b{font-weight:600}
+.delivered{align-self:flex-end;font-size:11.5px;color:var(--muted);margin:-4px 2px 6px;font-weight:500}
+.typing{display:flex;gap:4px;align-items:center;padding:12px 14px}
+.typing span{width:8px;height:8px;border-radius:50%;background:var(--muted);opacity:.5;animation:dot 1.2s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,60%,100%{opacity:.35;transform:translateY(0)}30%{opacity:.9;transform:translateY(-3px)}}
+.pop{animation:pop .32s cubic-bezier(.2,.9,.3,1.3) both}
+.b.out.pop{transform-origin:100% 100%}.b.in.pop{transform-origin:0 100%}
+@keyframes pop{from{opacity:0;transform:scale(.6) translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---------- stations ---------- */
+.station{padding-top:46px;display:grid;gap:16px}
+.st-head{display:grid;gap:10px}
+.st-num{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.st-num b{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--grad);color:#fff;font-family:var(--f-display);font-size:13px;letter-spacing:0}
+.station h2{font-family:var(--f-display);font-weight:700;font-size:clamp(27px,7.5vw,36px);line-height:1.08;letter-spacing:-.035em}
+.card{background:var(--card);border-radius:26px;padding:20px;box-shadow:var(--shadow);min-width:0;border:.5px solid var(--sep)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:14px 24px;font-weight:600;font-size:17px;cursor:pointer;background:var(--blue);color:#fff;transition:transform .15s ease,opacity .2s;touch-action:manipulation;text-decoration:none}
+.btn:active{transform:scale(.96)}
+.btn.grad{background:var(--grad);box-shadow:0 8px 24px rgba(200,71,255,.3)}
+.btn.tint{background:var(--blue-soft);color:var(--blue)}
+.btn.wide{width:100%}
+.btn:disabled{opacity:.35;cursor:default;transform:none}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.big{font-family:var(--f-display);font-weight:700;font-size:22px;line-height:1.2;letter-spacing:-.03em}
+
+/* ---------- 01 hunt ---------- */
+.hunt{display:grid;gap:16px}
+.target{display:inline-grid;place-items:center;width:1.55em;height:1.55em;border-radius:.4em;background:var(--grad);color:#fff;font-weight:800;vertical-align:-.12em;font-size:.95em}
+.hunt-intro{display:grid;gap:14px;text-align:center;justify-items:center;padding:8px 0}
+.hunt-intro .big-num{font-family:var(--f-display);font-weight:800;font-size:64px;line-height:1;letter-spacing:-.05em}
+.hunt-intro .big-num small{font-size:18px;color:var(--muted);font-weight:600;letter-spacing:0;margin-left:4px}
+.hunt-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.clock{font-family:var(--f-display);font-weight:700;font-size:30px;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.clock.low{color:var(--red)}
+.score{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:999px;background:var(--fill);font-weight:600;font-size:15px;font-variant-numeric:tabular-nums}
+.score b{color:var(--green)}
+.bar-time{height:6px;border-radius:9px;background:var(--fill);overflow:hidden}
+.bar-time i{display:block;height:100%;width:100%;background:var(--grad);transform-origin:left;border-radius:9px}
+.lgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;max-width:380px;width:100%;margin-inline:auto;-webkit-user-select:none;user-select:none}
+.lgrid button{aspect-ratio:1;border:0;background:var(--fill);border-radius:14px;font-size:clamp(21px,6.4vw,27px);font-weight:600;cursor:pointer;padding:0;touch-action:manipulation;transition:transform .1s}
+.lgrid button:active{transform:scale(.9)}
+.lgrid button.hit{background:var(--green);color:#fff;animation:hit .3s cubic-bezier(.2,.9,.3,1.4)}
+.lgrid button.miss{animation:miss .38s}
+@keyframes hit{50%{transform:scale(1.12)}}
+@keyframes miss{0%,100%{background:var(--fill);transform:none}20%{transform:translateX(-4px)}40%{background:var(--red);color:#fff;transform:translateX(4px)}60%{transform:translateX(-3px)}}
+.widgets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.widget{background:var(--card2);border-radius:20px;padding:14px 12px;display:grid;gap:4px;align-content:start;border:.5px solid var(--sep)}
+.widget .n{font-family:var(--f-display);font-weight:700;font-size:clamp(24px,7vw,32px);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.04em}
+.widget .l{font-size:12.5px;color:var(--muted);line-height:1.25;font-weight:500}
+.widget.hot .n{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.verdict{font-size:19px;font-weight:600;line-height:1.35;letter-spacing:-.02em}
+.facts{display:grid;gap:8px}
+.fact{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start;background:var(--card2);border-radius:18px;padding:14px;border:.5px solid var(--sep);font-size:15.5px;line-height:1.4}
+.fact .e{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:21px;background:var(--fill)}
+.fact b{display:block;font-size:16px;margin-bottom:2px}
+
+/* iOS banner */
+.banner{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 8px);z-index:40;width:min(400px,calc(100% - 16px));transform:translate(-50%,calc(-100% - 30px));transition:transform .45s cubic-bezier(.2,.9,.25,1.1);
+  background:var(--banner);-webkit-backdrop-filter:saturate(180%) blur(30px);backdrop-filter:saturate(180%) blur(30px);border-radius:22px;padding:12px 14px;display:grid;grid-template-columns:38px 1fr;gap:11px;align-items:center;text-align:left;cursor:pointer;
+  box-shadow:0 12px 40px rgba(0,0,0,.22);color:var(--ink);border:.5px solid var(--glass-line)}
+.banner.show{transform:translate(-50%,0)}
+.appic{width:38px;height:38px;border-radius:9px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:18px;overflow:hidden}
+.appic svg{width:24px;height:24px}
+.banner .top{display:flex;justify-content:space-between;gap:8px;font-size:15px;font-weight:600;line-height:1.2}
+.banner .top span{font-weight:400;font-size:13px;color:var(--muted);flex:none}
+.banner .txt{font-size:15px;line-height:1.3;margin-top:1px}
+/* opened "chat" */
+.sheet{position:fixed;inset:0;z-index:50;background:var(--shade);display:grid;align-items:end;justify-items:center;animation:fade .25s}
+@keyframes fade{from{opacity:0}}
+.sheet-in{width:min(480px,100%);max-height:88vh;background:var(--card);border-radius:24px 24px 0 0;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden;animation:up .38s cubic-bezier(.2,.9,.25,1)}
+@media (min-width:500px){ .sheet{align-items:center;padding:16px} .sheet-in{border-radius:24px} }
+@keyframes up{from{transform:translateY(100%)}}
+.chat-head{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:10px 12px 8px;background:var(--glass);border-bottom:.5px solid var(--sep)}
+.chat-head .back{justify-self:start;background:none;border:0;color:var(--blue);font-size:17px;cursor:pointer;padding:6px;display:flex;align-items:center;gap:2px}
+.chat-head .who{display:grid;justify-items:center;gap:3px;font-size:12px;font-weight:500}
+.chat-head .who .ava{width:46px;height:46px;font-size:18px}
+.chat-body{padding:12px 6px 10px;overflow:auto}
+.chat-foot{padding:10px 14px calc(14px + env(safe-area-inset-bottom,0px));display:grid;gap:10px;border-top:.5px solid var(--sep)}
+.fake-input{display:flex;align-items:center;gap:8px}
+.fake-input .plus{width:34px;height:34px;border-radius:50%;background:var(--fill);display:grid;place-items:center;color:var(--muted);font-size:22px;flex:none}
+.fake-input .field{flex:1;border:1px solid var(--sep);border-radius:999px;padding:7px 14px;color:var(--muted);font-size:16px}
+
+/* ---------- 02 quiz (chat) ---------- */
+.quiz{display:grid;gap:14px}
+.q-head{display:grid;gap:8px}
+.q-meta{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums}
+.progress{height:6px;border-radius:99px;background:var(--fill);overflow:hidden}
+.progress i{display:block;height:100%;background:var(--grad);width:0;transition:width .4s cubic-bezier(.2,.8,.2,1);border-radius:99px}
+.quiz .thread{padding:0 4px;min-height:120px;-webkit-mask:linear-gradient(to bottom,transparent 0,#000 34px);mask:linear-gradient(to bottom,transparent 0,#000 34px);padding-top:20px}
+.replies{display:flex;flex-direction:column;align-items:flex-end;gap:7px;padding:0 4px}
+.reply{border:1.5px solid var(--blue);color:var(--blue);background:transparent;border-radius:19px;padding:9px 14px;cursor:pointer;text-align:left;font-size:16px;line-height:1.3;max-width:88%;transition:background .15s,color .15s,transform .12s;touch-action:manipulation}
+.reply:active{transform:scale(.97)}
+@media (hover:hover){ .reply:hover{background:var(--blue-soft)} }
+.reply.sel{background:var(--blue);color:#fff}
+.replies.lock .reply{pointer-events:none;opacity:.4}
+.link{background:none;border:0;padding:4px 0;color:var(--blue);cursor:pointer;font-size:15px;font-weight:500}
+.result{display:grid;gap:18px;padding-top:6px}
+.r-hero{display:grid;gap:6px;padding:22px 20px;border-radius:22px;background:linear-gradient(140deg,color-mix(in srgb,var(--tc) 22%,transparent),color-mix(in srgb,var(--tc) 6%,transparent));border:.5px solid color-mix(in srgb,var(--tc) 35%,transparent)}
+.r-hero .k{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.r-name{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,10vw,46px);line-height:1;letter-spacing:-.045em;color:var(--tc)}
+.r-tag{font-size:18px;font-weight:600}
+.r-ref{font-size:14px;color:var(--muted)}
+.verse{font-size:17px;font-style:italic;line-height:1.4;padding:14px 16px;border-radius:18px;background:var(--card2);border-left:4px solid var(--tc)}
+.bars{display:grid;gap:9px}
+.bar{display:grid;grid-template-columns:104px 1fr 40px;align-items:center;gap:10px;font-size:14px;font-weight:500}
+.bar .track{height:10px;border-radius:99px;background:var(--fill);overflow:hidden}
+.bar .fill{height:100%;border-radius:99px;background:var(--tc);transform-origin:left;animation:grow .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes grow{from{transform:scaleX(0)}}
+.bar .pct{font-size:13px;text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.group{background:var(--card2);border-radius:18px;border:.5px solid var(--sep);overflow:hidden}
+.group > div{padding:14px 16px;display:grid;gap:4px}
+.group > div + div{border-top:.5px solid var(--sep)}
+.group h4{margin:0;font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.group h4 span{color:var(--tc)}
+.r-q{font-size:18px;font-weight:600;line-height:1.35}
+.egw .ref{font-size:12.5px;color:var(--tc);font-weight:600}
+.second{font-size:15px;color:var(--muted)}
+
+/* ---------- 03 life ---------- */
+.life{display:grid;gap:18px}
+.ctrls{display:grid;gap:0;background:var(--card2);border-radius:18px;border:.5px solid var(--sep);padding:4px 16px}
+.ctrl{display:grid;gap:2px;padding:10px 0}
+.ctrl + .ctrl{border-top:.5px solid var(--sep)}
+.ctrl label{display:flex;justify-content:space-between;font-weight:500;font-size:16px}
+.ctrl output{font-weight:700;font-variant-numeric:tabular-nums;color:var(--blue)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;margin:0;--p:50%;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:5px;border-radius:9px;background:linear-gradient(90deg,var(--blue) var(--p),var(--fill2) var(--p))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;margin-top:-11.5px;box-shadow:0 3px 8px rgba(0,0,0,.18),0 0 0 .5px rgba(0,0,0,.08)}
+input[type=range]::-moz-range-track{height:5px;border-radius:9px;background:var(--fill2)}
+input[type=range]::-moz-range-progress{height:5px;border-radius:9px;background:var(--blue)}
+input[type=range]::-moz-range-thumb{width:28px;height:28px;border:0;border-radius:50%;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.18)}
+.cells{display:grid;grid-template-columns:repeat(30,1fr);gap:2px;width:100%}
+.cells i{aspect-ratio:1;border-radius:2.5px;background:var(--fill);transition:background .2s}
+.cells i[data-c="past"]{background:var(--c-past)}
+.cells i[data-c="sleep"]{background:var(--c-sleep)}
+.cells i[data-c="food"]{background:var(--c-food)}
+.cells i[data-c="work"]{background:var(--c-work)}
+.cells i[data-c="road"]{background:var(--c-road)}
+.cells i[data-c="screen"]{background:var(--c-screen)}
+.cells i.free-glow{background:transparent;box-shadow:inset 0 0 0 1.5px var(--c-free);animation:glow 2s ease-in-out infinite alternate}
+@keyframes glow{to{background:color-mix(in srgb,var(--c-free) 35%,transparent)}}
+.step-text{min-height:6em;display:grid;gap:6px;align-content:start}
+.step-text .big{font-size:22px}
+.legend{display:grid}
+.legend div{display:grid;grid-template-columns:14px 1fr auto;gap:12px;align-items:center;padding:10px 0;font-size:15px}
+.legend div + div{border-top:.5px solid var(--sep)}
+.legend span:last-child{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px}
+.sw{width:14px;height:14px;border-radius:4px}
+.psalm{font-size:14px;color:var(--muted);font-style:italic;margin-top:4px}
+
+/* ---------- 04 questions ---------- */
+.qs .thread{gap:2px}
+.qs .b{max-width:90%}
+.qs .num{font-weight:700;color:var(--blue);margin-right:4px}
+
+/* ---------- 05 challenge ---------- */
+.list{background:var(--card);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);border:.5px solid var(--sep)}
+.ch-opt{display:grid;grid-template-columns:1fr 26px;gap:12px;align-items:center;width:100%;border:0;background:transparent;padding:14px 16px;cursor:pointer;text-align:left;position:relative;transition:background .15s}
+.ch-opt + .ch-opt::before{content:"";position:absolute;top:0;left:16px;right:0;border-top:.5px solid var(--sep)}
+.ch-opt:active{background:var(--fill)}
+.ch-opt b{display:block;font-size:17px;font-weight:600;margin-bottom:2px}
+.ch-opt .d{font-size:14.5px;color:var(--muted);line-height:1.35;display:block}
+.check{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--fill2);display:grid;place-items:center;transition:all .2s}
+.ch-opt[aria-checked="true"] .check{background:var(--blue);border-color:var(--blue)}
+.check svg{width:14px;height:14px;opacity:0;transform:scale(.4);transition:all .25s cubic-bezier(.2,.9,.3,1.4)}
+.ch-opt[aria-checked="true"] .check svg{opacity:1;transform:none}
+.pledge{display:grid;gap:4px}
+.pledge .thread{padding-right:8px}
+.pledge .b.out{max-width:88%}
+.pledge .b .t{display:block;font-weight:700;font-size:18px;margin-bottom:2px}
+.pledge-tip{text-align:center;font-size:14px;color:var(--muted);margin-top:4px}
+
+/* ---------- footer ---------- */
+footer{padding:56px 0 20px;display:grid;gap:14px;justify-items:center;text-align:center}
+footer .e{font-size:46px}
+footer p{color:var(--muted);font-size:14px;max-width:34ch}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,40px);opacity:0;transition:all .3s;background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:15px;font-weight:600;z-index:60;pointer-events:none}
+.toast.show{transform:translate(-50%,0);opacity:1}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+@media (max-width:400px){ .bar{grid-template-columns:90px 1fr 36px} .cells{gap:1.5px} .card{padding:16px;border-radius:24px} .widget{padding:12px 10px} }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <nav class="topbar-in" aria-label="Станции">
+    <a class="logo" href="#top" aria-label="Наверх"><span class="long" style="color:var(--ink);background:none">где твоё </span><span class="long">внимание</span><span class="short">👀</span></a>
+    <div class="chips" id="chips">
+      <a class="chip" href="#s1"><b>01</b>Буквы</a>
+      <a class="chip" href="#s2"><b>02</b>Тест</a>
+      <a class="chip" href="#s3"><b>03</b>Жизнь</a>
+      <a class="chip" href="#s4"><b>04</b>Вопросы</a>
+      <a class="chip" href="#s5"><b>05</b>Вызов</a>
+    </div>
+  </nav>
+</header>
+
+<div class="wrap" id="top">
+  <main>
+    <section class="hero">
+      <span class="badge"><i>✨</i>Молодёжка · время и внимание</span>
+      <h1>Где твоё <span class="grad-text">внимание</span>?</h1>
+      <div>
+        <div class="from"><span class="ava host">👋</span>Ведущий</div>
+        <div class="thread">
+          <div class="b in">Привет! Сегодня телефон можно держать в руках 📱</div>
+          <div class="b in">Проходим станции по порядку, когда скажет ведущий.</div>
+          <div class="b in tail">Если открыл заранее — подожди встречи. Не забегай вперёд, иначе испортишь себе первый эксперимент 😉</div>
+          <div class="b out tail">Ок, жду 👌</div>
+          <div class="delivered">Доставлено</div>
+        </div>
+      </div>
+      <a class="btn grad cta" href="#s1">Поехали ↓</a>
+    </section>
+
+    <!-- 01 -->
+    <section class="station reveal" id="s1">
+      <div class="st-head">
+        <div class="st-num"><b>01</b>Тест на внимательность</div>
+        <h2>Найди все <span class="target">Щ</span></h2>
+      </div>
+      <div class="thread">
+        <div class="b in">Два раунда по 30 секунд. В сетке спрятаны буквы Щ среди похожих.</div>
+        <div class="b in tail">Нажимай только на них. Нашёл все — появится новая сетка. Считается, сколько найдёшь за раунд.</div>
+      </div>
+      <div class="card hunt" id="hunt"></div>
+    </section>
+
+    <!-- 02 -->
+    <section class="station reveal" id="s2">
+      <div class="st-head">
+        <div class="st-num"><b>02</b>Тест · 12 вопросов</div>
+        <h2>Кто ворует твоё внимание</h2>
+      </div>
+      <div class="thread">
+        <div class="b in">Шесть типов, у каждого есть свой библейский персонаж.</div>
+        <div class="b in">Отвечай первым, что пришло в голову, а не «как правильно».</div>
+        <div class="b in tail">Здесь нет хороших и плохих типов: у каждого есть своя сила и своя тень.</div>
+      </div>
+      <div class="card quiz" id="quiz"></div>
+    </section>
+
+    <!-- 03 -->
+    <section class="station reveal" id="s3">
+      <div class="st-head">
+        <div class="st-num"><b>03</b>Жизнь в клеточках</div>
+        <h2>900 месяцев</h2>
+      </div>
+      <div class="thread">
+        <div class="b in">Каждая клеточка — один месяц жизни до 75 лет.</div>
+        <div class="b in">Поставь свои цифры, потом нажимай «Дальше» вместе с ведущим.</div>
+        <div class="b in tail">Экранное время смотри в настройках телефона и бери то, что вне работы и учёбы.</div>
+      </div>
+      <div class="card life">
+        <div class="ctrls">
+          <div class="ctrl"><label for="age">Мне лет <output id="ageOut">22</output></label><input type="range" id="age" min="14" max="45" step="1" value="22"></div>
+          <div class="ctrl"><label for="sleep">Сплю, часов <output id="sleepOut">8</output></label><input type="range" id="sleep" min="5" max="10" step="0.5" value="8"></div>
+          <div class="ctrl"><label for="scr">Экран вне работы, ч/день <output id="scrOut">4</output></label><input type="range" id="scr" min="0.5" max="10" step="0.5" value="4"></div>
+        </div>
+        <div class="cells" id="cells" aria-label="Сетка жизни по месяцам"></div>
+        <div class="step-text" id="stepText" aria-live="polite"></div>
+        <div class="row">
+          <button class="btn" id="lifeNext" style="flex:1">Дальше</button>
+          <button class="btn tint" id="lifeReset">Сначала</button>
+        </div>
+        <div class="legend" id="legend"></div>
+      </div>
+    </section>
+
+    <!-- 04 -->
+    <section class="station reveal" id="s4">
+      <div class="st-head">
+        <div class="st-num"><b>04</b>Разговор в группах</div>
+        <h2>Вопросы не для галочки</h2>
+      </div>
+      <div class="thread">
+        <div class="b in tail">Выберите в группе два-три вопроса. Правильных ответов здесь нет 🙌</div>
+      </div>
+      <div class="card qs">
+        <div class="from"><span class="ava host">💬</span>Вопросы для группы</div>
+        <div class="thread" id="qsThread"></div>
+      </div>
+    </section>
+
+    <!-- 05 -->
+    <section class="station reveal" id="s5">
+      <div class="st-head">
+        <div class="st-num"><b>05</b>Вызов на неделю</div>
+        <h2>Одно изменение, не десять</h2>
+      </div>
+      <div class="thread">
+        <div class="b in">Выбери одно.</div>
+        <div class="b in tail">Сделай скриншот своего вызова и отправь тому, кто спросит тебя в следующую субботу, как всё прошло 📸</div>
+      </div>
+      <div class="list" id="ch" role="radiogroup" aria-label="Вызов на неделю"></div>
+      <div class="pledge" id="pledge" hidden>
+        <div class="stamp"><b>Мой вызов</b> · до следующей субботы</div>
+        <div class="thread">
+          <div class="b out tail pop" id="pledgeB"><span class="t" id="pledgeT"></span><span id="pledgeD"></span></div>
+          <div class="delivered">Доставлено</div>
+        </div>
+        <p class="pledge-tip">Скриншот — и отправь другу 👆</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="e">🙏</div>
+    <p>«Научи нас так счислять дни наши, чтобы нам приобрести сердце мудрое». Пс. 89:12</p>
+    <button class="btn tint" id="share">Поделиться ссылкой</button>
+  </footer>
+</div>
+
+<div class="banner" id="banner" role="button" tabindex="-1" aria-live="polite">
+  <div class="appic" id="nIc"></div>
+  <div><div class="top"><span id="nFrom" style="font-weight:600;font-size:15px;color:inherit"></span><span>сейчас</span></div><div class="txt" id="nTxt"></div></div>
+</div>
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-in" role="dialog" aria-modal="true" aria-labelledby="sName">
+    <div class="chat-head">
+      <button class="back" id="sBack" aria-label="Назад"><svg width="12" height="20" viewBox="0 0 12 20"><path d="M10 2 2 10l8 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="who"><span class="ava" id="sAva"></span><span id="sName"></span></div>
+      <span></span>
+    </div>
+    <div class="chat-body"><div class="thread" id="sThread"></div></div>
+    <div class="chat-foot">
+      <div class="fake-input"><span class="plus">+</span><span class="field">Сообщение</span></div>
+      <button class="btn wide" id="sClose">Назад к буквам</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const nf=(x,d)=>x.toLocaleString('ru-RU',{maximumFractionDigits:d,minimumFractionDigits:d});
+  function plural(n,a,b,c){const m=Math.abs(n)%100,k=m%10; if(m>10&&m<20)return c; if(k===1)return a; if(k>=2&&k<=4)return b; return c;}
+  const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const wait=ms=>new Promise(r=>setTimeout(r,reduce?0:ms));
+  function toast(t){const el=$('toast'); el.textContent=t; el.classList.add('show'); clearTimeout(toast.t); toast.t=setTimeout(()=>el.classList.remove('show'),2000);}
+  function nowTime(){const d=new Date(); return d.getHours()+':'+String(d.getMinutes()).padStart(2,'0');}
+
+  /* ---------- nav + reveal ---------- */
+  const chips=[...document.querySelectorAll('.chip')];
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } }),{rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    const nav=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ const id=e.target.id; chips.forEach(c=>{const on=c.getAttribute('href')==='#'+id; c.classList.toggle('on',on); if(on) c.scrollIntoView({inline:'nearest',block:'nearest'});}); } }),{rootMargin:'-45% 0px -50% 0px'});
+    document.querySelectorAll('.station').forEach(el=>nav.observe(el));
+  } else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+
+  /* ================= 01 HUNT ================= */
+  const hunt=$('hunt'), ROUND=30;
+  const IC={
+    msg:['linear-gradient(180deg,#67FF81,#01B41F)','<svg viewBox="0 0 24 24"><path fill="#fff" d="M12 3C6.5 3 2 6.6 2 11.1c0 2.5 1.4 4.8 3.7 6.3-.2 1.4-.9 2.6-2 3.6 2.3 0 4.2-.9 5.5-2 .9.2 1.8.3 2.8.3 5.5 0 10-3.6 10-8.1S17.5 3 12 3z"/></svg>'],
+    chat:['linear-gradient(180deg,#37BBFE,#007DBB)','<svg viewBox="0 0 24 24"><path fill="#fff" d="M20.7 4.3 3.2 11c-1.2.5-1.2 1.2-.2 1.5l4.5 1.4 1.7 5.3c.2.6.4.8.8.8s.6-.2.9-.5l2.2-2.1 4.5 3.3c.8.5 1.4.2 1.6-.8l2.9-13.7c.3-1.2-.4-1.8-1.4-1.4z"/></svg>'],
+    photo:['#fff','<span style="font-size:24px">🌸</span>'],
+    bank:['linear-gradient(180deg,#3EDB6B,#0B9B3B)','₽'],
+    video:['linear-gradient(180deg,#FF4D4D,#E00000)','<svg viewBox="0 0 24 24"><path fill="#fff" d="M8 5.5v13l11-6.5z"/></svg>'],
+    game:['linear-gradient(160deg,#FFB13D,#FF5E3A)','<span style="font-size:22px">🎮</span>'],
+    stories:['linear-gradient(45deg,#FEDA75,#FA7E1E 30%,#D62976 60%,#962FBF 85%,#4F5BD5)','<svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="#fff" stroke-width="2"/><circle cx="17" cy="7" r="1.2" fill="#fff"/></svg>'],
+    news:['linear-gradient(180deg,#FF5A6E,#F5163B)','N']
+  };
+  const NOTES=[
+    {from:'Мама',txt:'Ты где? Перезвони, срочно',ic:'msg',ava:'linear-gradient(180deg,#A5ABB8,#858994)',rev:'Нашла твою зарядку у нас дома. Не срочно, просто чтобы ты знал ❤️'},
+    {from:'Чат молодёжки',txt:'47 новых сообщений',ic:'chat',ava:'linear-gradient(180deg,#37BBFE,#007DBB)',rev:'Кто-то скинул стикер. Потом ещё 46 стикеров.'},
+    {from:'Фото',txt:'Тебя отметили на фото',ic:'photo',ava:'linear-gradient(160deg,#FF9A3C,#FF3D8B)',rev:'Фото с прошлой субботы. Ты моргнул 🫣'},
+    {from:'Даня',txt:'ты видел что в чате???',ic:'msg',ava:'linear-gradient(180deg,#B08CFF,#7548AC)',rev:'Ничего особенного. Просто очень хотелось, чтобы кто-то посмотрел.'},
+    {from:'Банк',txt:'Зачисление 2 500 ₽',ic:'bank',ava:'linear-gradient(180deg,#3EDB6B,#0B9B3B)',rev:'Кешбэк за прошлый месяц. Деньги никуда не денутся.'},
+    {from:'Видео',txt:'Ты делал это неправильно всю жизнь',ic:'video',ava:'linear-gradient(180deg,#FF4D4D,#E00000)',rev:'Как правильно чистить мандарин. 14 минут 🍊'},
+    {from:'Аня',txt:'Можно вопрос? Только честно',ic:'msg',ava:'linear-gradient(180deg,#FF9AC4,#E8256A)',rev:'«Ты не знаешь, во сколько завтра собираемся?»'},
+    {from:'Игра',txt:'Сундук готов! Забери награду',ic:'game',ava:'linear-gradient(160deg,#FFB13D,#FF5E3A)',rev:'+50 монет. Следующий сундук через 4 часа.'},
+    {from:'Истории',txt:'5 человек посмотрели твою историю',ic:'stories',ava:'linear-gradient(45deg,#FA7E1E,#D62976,#962FBF)',rev:'Кто именно — покажем, если зайдёшь ещё раз 👀'},
+    {from:'Новости',txt:'Вот что случилось этой ночью',ic:'news',ava:'linear-gradient(180deg,#FF5A6E,#F5163B)',rev:'Подборка из 12 новостей, которые ты забудешь к обеду.'}
+  ];
+  let H={stage:'intro',r1:0,r2:0,err1:0,err2:0,found:0,err:0,shown:0,opened:0,openMs:0,openAt:0,t0:0,timer:null,nTimer:null,hideTimer:null,deck:[],cur:null};
+
+  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+  function makeGrid(){
+    const n=36, t=4+Math.floor(Math.random()*3), arr=[];
+    for(let i=0;i<n;i++) arr.push(i<t?'Щ':(Math.random()<.68?'Ш':'Ц'));
+    return shuffle(arr);
+  }
+  function hIntro(){
+    hunt.innerHTML='<div class="hunt-intro"><div class="muted small" style="font-weight:600;text-transform:uppercase;letter-spacing:.05em">Раунд 1</div>'+
+      '<div class="big-num">30<small>сек</small></div>'+
+      '<p class="muted">Ищи <span class="target">Щ</span>. Быстро, но точно — ошибки тоже считаются.</p>'+
+      '<button class="btn grad wide" id="hGo">Начать раунд 1</button></div>';
+    $('hGo').onclick=()=>hRun(1);
+  }
+  function hBetween(){
+    hunt.innerHTML='<div class="hunt-intro"><div class="muted small" style="font-weight:600;text-transform:uppercase;letter-spacing:.05em">Раунд 1 · найдено</div>'+
+      '<div class="big-num">'+H.r1+'</div>'+
+      '<p class="big">Раунд 2</p><p class="muted">То же задание, ещё 30 секунд. Постарайся найти больше, чем в первый раз 💪</p>'+
+      '<button class="btn grad wide" id="hGo">Начать раунд 2</button></div>';
+    $('hGo').onclick=()=>hRun(2);
+  }
+  function hRun(r){
+    H.stage='r'+r; H.found=0; H.err=0; H.t0=Date.now();
+    if(r===2){H.shown=0;H.opened=0;H.openMs=0;H.deck=shuffle(NOTES.slice());}
+    hunt.innerHTML='<div class="hunt-top"><span class="clock" id="hClock">0:30</span><span class="score">Раунд '+r+' · <b id="hFound">0</b></span></div>'+
+      '<div class="bar-time"><i id="hBar"></i></div><div class="lgrid" id="lgrid"></div>';
+    drawGrid();
+    clearInterval(H.timer); H.timer=setInterval(hTick,100);
+    if(r===2) scheduleNote(2200);
+    hunt.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});
+  }
+  function drawGrid(){
+    const g=$('lgrid'); if(!g) return; const letters=makeGrid(); let left=letters.filter(x=>x==='Щ').length;
+    g.innerHTML=letters.map(l=>'<button data-l="'+l+'" aria-label="'+l+'">'+l+'</button>').join('');
+    g.querySelectorAll('button').forEach(b=>b.onclick=()=>{
+      if(b.classList.contains('hit')) return;
+      if(b.dataset.l==='Щ'){b.classList.add('hit'); H.found++; $('hFound').textContent=H.found; left--; if(left===0) setTimeout(drawGrid,180);}
+      else {H.err++; b.classList.remove('miss'); void b.offsetWidth; b.classList.add('miss'); try{navigator.vibrate&&navigator.vibrate(25)}catch(e){}}
+    });
+  }
+  function hTick(){
+    const el=(Date.now()-H.t0)/1000, left=Math.max(0,ROUND-el);
+    const c=$('hClock'); if(c){ c.textContent='0:'+String(Math.ceil(left)).padStart(2,'0'); c.classList.toggle('low',left<=5); }
+    const b=$('hBar'); if(b) b.style.transform='scaleX('+(left/ROUND)+')';
+    if(left<=0) hEnd();
+  }
+  function hEnd(){
+    clearInterval(H.timer); clearTimeout(H.nTimer); clearTimeout(H.hideTimer); hideNote();
+    if(!$('sheet').hidden) closeSheet();
+    if(H.stage==='r1'){H.r1=H.found;H.err1=H.err;H.stage='between';hBetween();}
+    else {H.r2=H.found;H.err2=H.err;H.stage='done';hResult();}
+  }
+  /* notifications */
+  function scheduleNote(ms){ clearTimeout(H.nTimer); H.nTimer=setTimeout(()=>{ if(H.stage!=='r2')return; if($('sheet').hidden) showNote(); scheduleNote(3400+Math.random()*1600); },ms); }
+  function showNote(){
+    const n=H.deck[H.shown%H.deck.length]; H.cur=n; H.shown++;
+    const ic=IC[n.ic];
+    $('nIc').style.background=ic[0]; $('nIc').innerHTML=ic[1];
+    $('nFrom').textContent=n.from; $('nTxt').textContent=n.txt;
+    $('banner').classList.add('show');
+    try{navigator.vibrate&&navigator.vibrate([40,60,40])}catch(e){}
+    clearTimeout(H.hideTimer); H.hideTimer=setTimeout(hideNote,3000);
+  }
+  function hideNote(){ $('banner').classList.remove('show'); }
+  $('banner').onclick=()=>{
+    if(H.stage!=='r2'||!H.cur) return;
+    const n=H.cur;
+    hideNote(); clearTimeout(H.hideTimer); H.opened++; H.openAt=Date.now();
+    $('sAva').style.background=n.ava; $('sAva').textContent=n.from[0]; $('sName').textContent=n.from+' ›';
+    $('sThread').innerHTML='<div class="stamp"><b>Сегодня</b> '+nowTime()+'</div><div class="b in pop">'+esc(n.txt)+'</div><div class="b in tail pop" style="animation-delay:.35s">'+esc(n.rev)+'</div>';
+    $('sheet').hidden=false; $('sClose').focus();
+  };
+  function closeSheet(){ if($('sheet').hidden) return; H.openMs+=Date.now()-H.openAt; $('sheet').hidden=true; }
+  $('sClose').onclick=closeSheet; $('sBack').onclick=closeSheet;
+
+  function hResult(){
+    const d=H.r1?Math.round((H.r2-H.r1)/H.r1*100):0;
+    const ds=d>0?'+'+d+'%':d+'%';
+    const sec=Math.round(H.openMs/1000);
+    let verdict;
+    if(H.opened>0) verdict='Ты открыл '+H.opened+' из '+H.shown+' '+plural(H.shown,'уведомления','уведомлений','уведомлений')+'. Никто не просил тебя их открывать. Задание было искать буквы. Ты знал, что уведомления ненастоящие, и всё равно рука потянулась.';
+    else verdict='Ты не открыл ни одного из '+H.shown+'. А сколько из них ты всё-таки прочитал глазами? Каждое прочитанное уведомление на секунду забирало внимание, даже если палец остался на месте.';
+    hunt.innerHTML=
+      '<div class="widgets">'+
+        '<div class="widget"><span class="n">'+H.r1+'</span><span class="l">раунд 1, без помех</span></div>'+
+        '<div class="widget"><span class="n">'+H.r2+'</span><span class="l">раунд 2 · '+ds+'</span></div>'+
+        '<div class="widget hot"><span class="n">'+H.opened+'/'+H.shown+'</span><span class="l">уведомлений открыто'+(H.opened?' · '+sec+' с внутри':'')+'</span></div>'+
+      '</div>'+
+      '<p class="verdict">'+esc(verdict)+'</p>'+
+      '<div class="facts">'+
+        '<div class="fact"><span class="e">🧠</span><p><b>Остаток внимания</b>Психолог Софи Лерой показала: когда переключаешься на другое дело, часть внимания остаётся на предыдущем. Ты вернулся к буквам, но частично ещё думаешь про «Маму» и «47 сообщений».</p></div>'+
+        '<div class="fact"><span class="e">⏱️</span><p><b>23 минуты</b>Исследовательница Глория Марк наблюдала за людьми на работе: после того как их отвлекали, к прерванной задаче они в среднем возвращались только примерно через 23 минуты.</p></div>'+
+        '<div class="fact"><span class="e">🙏</span><p><b>Это касается не только учёбы</b>Молитва, разговор с женой или другом, чтение Библии — всё это тоже «задачи», которые прерываются точно так же.</p></div>'+
+      '</div>'+
+      '<button class="btn tint" id="hAgain">Пройти заново</button>';
+    $('hAgain').onclick=()=>{H.stage='intro';hIntro();};
+  }
+  hIntro();
+
+  /* ================= 02 QUIZ ================= */
+  const T={
+    beg:{name:'Беглец',tag:'Бежит от тишины',ref:'Иона · Ион. 1:3–5',c:'--t-beg',
+      verse:'«И встал Иона, чтобы бежать в Фарсис от лица Господня».',
+      phone:'Приложения открываются без цели. Всегда что-то играет фоном: музыка, видео, подкаст. Ты не ищешь что-то конкретное, ты уходишь от чего-то.',
+      strength:'Чувствительность. Ты раньше других замечаешь, что внутри что-то не так. Просто пока гасишь этот сигнал, а не слушаешь его.',
+      shadow:'Скука, тревога, неприятная мысль, недоговорённый разговор с Богом. Экран быстро уводит от всего этого.',
+      deep:'Иона не просто сбежал. Он уснул в трюме, пока вокруг шла буря. Бегство почти всегда выглядит как отдых. Древние монахи называли это состояние «полуденным бесом»: беспокойство, при котором ни на чём нельзя задержаться.',
+      egw:{ref:'Гл. 125 «Любовь к мирским удовольствиям» · MYP 368.1',start:'«Молодые люди часто указывают на то, что им нужно нечто…»',text:'Молодые говорят, что уму нужно что-то, что будет его оживлять и отвлекать. Совет книги: свободные минуты лучше отдавать Писанию и молитве, чем новой погоне за возбуждением.'},
+      q:'О чём я не хочу думать, когда тянусь за телефоном?',
+      try:'Каждый день 10 минут без входящего: дорога или прогулка без наушников. Замечай, какие мысли приходят.'},
+    mar:{name:'Марфа',tag:'Отвлекается делами',ref:'Марфа · Лк. 10:38–42',c:'--t-mar',
+      verse:'«Марфа! Марфа! ты заботишься и суетишься о многом, а одно только нужно».',
+      phone:'Почта, заметки, рабочие и церковные чаты, списки дел. Телефон у тебя скорее пульт управления, чем развлечение.',
+      strength:'Ответственность. На таких, как ты, держатся общины, семьи и проекты.',
+      shadow:'Занятость становится уважаемым способом не останавливаться. «Мне некогда» звучит лучше, чем «мне страшно остаться без дела».',
+      deep:'Марфу отвлекло не развлечение, а угощение для Самого Иисуса. Он не ругает её за служение. Он говорит, что Мария выбрала «благую часть, которая не отнимется». Её часть была не в том, что она сделала, а в том, где она была.',
+      egw:{ref:'Гл. 30 «Живая вера», подраздел «Созерцание Христа» · MYP 113.3–114.1',start:'«Пусть никто не думает, что без серьёзных усилий…»',text:'То, что видит глаз и слышит ухо, слишком часто поглощает интерес. Без усилия это не изменится. Совет книги: уже сейчас каждый день отводить время просто на то, чтобы созерцать Христа.'},
+      q:'Где я делаю для Бога, вместо того чтобы быть с Ним?',
+      try:'Намеренно вычеркни одно дело из списка на эту неделю. В субботу ничего не планируй заранее.'},
+    svy:{name:'На связи',tag:'Живёт по чужим уведомлениям',ref:'Саул · 1 Цар. 13:8–12; 15:24',c:'--t-svy',
+      verse:'«…ибо я боялся народа и послушался голоса их».',
+      phone:'Мессенджеры, реакции, «прочитано». Ты отвечаешь быстрее всех и чувствуешь вину, если не успел.',
+      strength:'Ты чувствуешь людей и умеешь быть рядом. Многие держатся за счёт того, что ты пишешь первым.',
+      shadow:'Это похоже на любовь, но часто это страх: выпасть, разочаровать, оказаться ненужным.',
+      deep:'Саул не дождался Самуила и сам принёс жертву, потому что народ начал расходиться. Каждое уведомление — чужая повестка в твоём дне. Иисусу сказали «все ищут Тебя», и Он ушёл в другие селения (Мк. 1:37–38). Не от равнодушия, а потому что знал, Чей голос главный.',
+      egw:{ref:'Гл. 9 «Сотрудничество с Богом» · MYP 47',start:null,text:'Время, влияние, способности, умения — за всё это мы даём отчёт Тому, Кто всё даёт. Ему, а не тем, кто ждёт ответа в чате.'},
+      q:'Чьё мнение на самом деле управляет моим расписанием?',
+      try:'Выключи уведомления чатов. Отвечай три раза в день, а не сразу.'},
+    afi:{name:'Афинянин',tag:'Всегда в курсе',ref:'Афиняне · Деян. 17:21',c:'--t-afi',
+      verse:'«…ни в чём охотнее не проводили время, как в том, чтобы говорить или слушать что-нибудь новое».',
+      phone:'Каналы, новости, разборы, подкасты на скорости 1,5. Сохранённого «на потом» больше, чем прочитанного.',
+      strength:'Любопытство. Павел в Афинах начал проповедь именно с него.',
+      shadow:'Информация ощущается как рост, но почти ничего не меняет. Можно часами читать о Боге и ни минуты не провести с Ним.',
+      deep:'Афиняне выслушали Павла как ещё одну интересную новинку. Большинство разошлись со словами «об этом послушаем тебя в другой раз» (Деян. 17:32). Знать о многом и глубоко знать одно — разные вещи.',
+      egw:{ref:'Гл. 88 «Выбор книг для чтения» · MYP 271.3; 273.1–2',start:'«Сатана знает, что разум человека во многом зависит…»',text:'Ум становится таким, какой пищей его кормят. И проверочный вопрос: можешь ли ты после такого чтения открыть Библию и читать её с интересом?'},
+      q:'Что из прочитанного и просмотренного за неделю я реально применил?',
+      try:'Одна вещь вглубь в день: глава, статья или проповедь целиком, без параллельной ленты.'},
+    isa:{name:'Исав',tag:'Хочет прямо сейчас',ref:'Исав · Быт. 25:29–34',c:'--t-isa',
+      verse:'«…вот, я умираю, что мне в этом первородстве?»',
+      phone:'Короткие видео, игры, «ещё одно — и всё». Рука открывает приложение раньше, чем ты успел решить.',
+      strength:'Живость. Ты умеешь радоваться и легко загораешься.',
+      shadow:'Короткое вместо долгого. Лента устроена так, что следующее видео всегда чуть интереснее предыдущего.',
+      deep:'Исав продал первородство за одну тарелку похлёбки не потому, что не ценил его, а потому, что был голоден прямо сейчас. Каждое «ещё одно» — маленькая чечевица. По отдельности ничего страшного, но платишь всегда одним и тем же: способностью хотеть большого.',
+      egw:{ref:'Гл. 90 «Духовная пища», подраздел «Духовное опьянение» · MYP 280.3–281.1',start:'«Кто привык читать только увлекательные…»',text:'Кто привык «глотать» захватывающие истории, теряет способность к серьёзному размышлению. Развитый вкус к сенсационному портит вкус ко всему остальному. Написано про романы, но ленты устроены по тому же принципу.'},
+      q:'Что я на самом деле отдаю за «ещё одно»?',
+      try:'Удали на неделю одно приложение с короткими видео или игру.'},
+    dav:{name:'Наблюдатель',tag:'Смотрит на чужую жизнь',ref:'Давид на крыше · 2 Цар. 11:1–2',c:'--t-dav',
+      verse:'«…Давид же оставался в Иерусалиме… прогуливался на кровле царского дома».',
+      phone:'Чужие страницы, сторис, профили. Ты много знаешь о том, как живут другие, и часто после этого хуже относишься к своей жизни.',
+      strength:'Восприимчивость. Ты замечаешь красоту и детали. Давид был поэтом, и это тот же дар.',
+      shadow:'Сравнение, зависть, а иногда и то, на что смотреть не стоит. Лента — это крыша дворца: видно всех, а тебя не видит никто.',
+      deep:'Падение Давида началось не со взгляда. Оно началось с того, что он остался дома «в то время, когда цари выходят в походы». Когда ты не там, где должен быть, взгляд найдёт, за что зацепиться.',
+      egw:{ref:'Гл. 92 «Охраняйте дверь сердца своего» · MYP 285.1–2',start:'«Однако, чтобы противостоять искушению, мы должны…»',text:'Избегать того, что, если прочитать, увидеть или услышать, наводит на нечистые мысли, и приучать ум задерживаться на чистом и святом. Ум не бывает пустым: его всегда чем-то заполняют.'},
+      q:'После чего я чувствую себя хуже, но всё равно туда смотрю?',
+      try:'Отпишись от десяти аккаунтов, после которых хуже. Вместо пролистывания напиши одному человеку лично.'}
+  };
+  const ORDER=['beg','mar','svy','afi','isa','dav'];
+  const Q=[
+    ['Стоишь в очереди 3 минуты, телефон в руке. Скорее всего…',{beg:'открою что угодно, лишь бы не стоять просто так',svy:'проверю, не написал ли кто',afi:'гляну новости или что-то интересное',mar:'разгребу сообщения по делам',isa:'пару коротких видео, быстро же',dav:'посмотрю, что выложили знакомые'}],
+    ['Свободный вечер, никаких планов. Первая мысль:',{beg:'тревожно, надо чем-то заполнить',mar:'отлично, доделаю то, что висит',svy:'где все? может, кто-то зовёт',afi:'наконец досмотрю сохранённое',isa:'закажу вкусного и включу что-нибудь',dav:'полистаю, как у других дела'}],
+    ['Ты только проснулся. Первое, что делаешь:',{svy:'уведомления и чаты',afi:'новости: что случилось за ночь',mar:'прокручиваю список дел',beg:'включаю что-нибудь фоном, лишь бы не тишина',isa:'ещё 10 минут видео в кровати',dav:'смотрю сторис друзей'}],
+    ['На проповеди тянет взять телефон, потому что…',{mar:'вспомнил дело, пока не забыл',beg:'скучно, мысли разбегаются',svy:'пришло сообщение, вдруг важное',afi:'хочу загуглить то, что сказали, и уплываю дальше',isa:'рука сама, это просто привычка',dav:'интересно, что выложили другие'}],
+    ['Неделя без интернета. Что будет сложнее всего?',{afi:'не знать, что происходит в мире',svy:'что до меня не достучатся и обидятся',beg:'вечера наедине с собой',mar:'дела встанут',isa:'скука без быстрых развлечений',dav:'не видеть, как живут другие'}],
+    ['Когда на душе тяжело, ты чаще…',{mar:'с головой ухожу в дела',beg:'включаю сериал или игру, чтобы не думать',svy:'пишу кому-нибудь, чтобы не быть одному',afi:'читаю всё подряд про похожие ситуации',isa:'заедаю или покупаю что-то для настроения',dav:'смотрю чужие страницы, и становится ещё хуже'}],
+    ['Какая фраза больше про тебя?',{afi:'«Я в курсе всего»',svy:'«Я всегда на связи»',mar:'«Мне некогда»',beg:'«Мне скучно»',isa:'«Ну ещё одно — и всё»',dav:'«А у них вот как…»'}],
+    ['Когда молишься, мысли чаще уходят…',{mar:'в планы на день',svy:'в разговор, который был или будет',beg:'куда угодно, лишь бы закончить поскорее',afi:'в то, что недавно видел или читал',isa:'в то, чего хочется прямо сейчас',dav:'в сравнение себя с кем-то'}],
+    ['Открой экранное время. Больше всего там, скорее всего…',{svy:'мессенджеры',afi:'каналы, новости, длинные видео',isa:'короткие видео и игры',dav:'соцсети с чужими страницами',mar:'почта, заметки, рабочие приложения',beg:'всё понемногу, прыгаю туда-сюда'}],
+    ['Что бесит больше всего?',{svy:'когда долго не отвечают',mar:'когда моё время тратят впустую',afi:'когда я узнаю что-то последним',isa:'ждать',beg:'тишина и неловкие паузы',dav:'когда у кого-то получается то, чего хочу я'}],
+    ['После часа в телефоне ты обычно чувствуешь…',{beg:'облегчение, а потом пустоту',isa:'«зачем я это сделал», но завтра снова',afi:'голова гудит от всего увиденного',dav:'что моя жизнь какая-то не такая',svy:'что всем ответил, но устал',mar:'что сделал дела, но не отдохнул'}],
+    ['Бог предлагает тебе свободный час с Ним прямо сейчас. Что помешает сильнее всего?',{mar:'дела, которые надо успеть',svy:'люди, которые ждут ответа',beg:'не знаю, о чём говорить в тишине',afi:'сначала дочитаю, потом приду',isa:'хочется чего-то полегче и повеселее',dav:'мысль «у других с Богом получается лучше»'}]
+  ];
+  const QO=Q.map(q=>shuffle(Object.keys(q[1])));
+  const quiz=$('quiz'); let qi=0, ans=[], busy=false;
+
+  function threadHTML(upto,typing){
+    // last two finished exchanges + the current question
+    let h='', from=Math.max(0,upto-2);
+    for(let i=from;i<upto;i++){
+      h+='<div class="b in tail">'+esc(Q[i][0])+'</div>';
+      if(ans[i]) h+='<div class="b out tail">'+esc(Q[i][1][ans[i]])+'</div>';
+    }
+    if(typing) h+='<div class="b in tail typing pop"><span></span><span></span><span></span></div>';
+    return h;
+  }
+  function shell(){
+    quiz.innerHTML='<div class="q-head"><div class="q-meta"><span id="qNum"></span><span id="qPct"></span></div><div class="progress"><i id="qBar"></i></div></div>'+
+      '<div class="thread" id="qThread"></div><div class="replies" id="qReplies"></div><div id="qFoot"></div>';
+  }
+  function setHead(){
+    const done=Math.min(qi,Q.length);
+    $('qNum').textContent=qi<Q.length?'Вопрос '+(qi+1)+' из '+Q.length:'Готово';
+    $('qPct').textContent=Math.round(done/Q.length*100)+'%';
+    $('qBar').style.width=(done/Q.length*100)+'%';
+  }
+  function renderQ(anim){
+    if(!$('qThread')) shell();
+    setHead();
+    const it=Q[qi], order=QO[qi];
+    $('qThread').innerHTML=threadHTML(qi,false)+'<div class="b in tail'+(anim?' pop':'')+'">'+esc(it[0])+'</div>';
+    $('qReplies').className='replies';
+    $('qReplies').innerHTML=order.map((k,j)=>'<button class="reply'+(anim?' pop':'')+(ans[qi]===k?' sel':'')+'" data-k="'+k+'" style="animation-delay:'+(anim?j*45:0)+'ms">'+esc(it[1][k])+'</button>').join('');
+    $('qFoot').innerHTML=qi>0?'<button class="link" id="qBack">‹ Назад</button>':'';
+    $('qReplies').querySelectorAll('.reply').forEach(b=>b.onclick=()=>choose(b.dataset.k));
+    const back=$('qBack'); if(back) back.onclick=()=>{ if(busy) return; qi--; renderQ(false); };
+  }
+  async function choose(k){
+    if(busy) return; busy=true;
+    ans[qi]=k;
+    $('qReplies').classList.add('lock');
+    $('qThread').insertAdjacentHTML('beforeend','<div class="b out tail pop">'+esc(Q[qi][1][k])+'</div>');
+    await wait(260);
+    $('qThread').insertAdjacentHTML('beforeend','<div class="b in tail typing pop"><span></span><span></span><span></span></div>');
+    await wait(650);
+    qi++;
+    busy=false;
+    if(qi<Q.length) renderQ(true); else renderR();
+  }
+  function renderR(){
+    const cnt={}; ORDER.forEach(k=>cnt[k]=0); ans.forEach(k=>cnt[k]++);
+    const sorted=ORDER.slice().sort((a,b)=>cnt[b]-cnt[a]||ORDER.indexOf(a)-ORDER.indexOf(b));
+    const r=T[sorted[0]], s=T[sorted[1]], e=r.egw;
+    quiz.innerHTML='<div class="q-head"><div class="q-meta"><span>Готово 🎉</span><span>100%</span></div><div class="progress"><i style="width:100%"></i></div></div>'+
+      '<div class="thread"><div class="b in pop">Всё, посчитал 🙌</div><div class="b in tail pop" style="animation-delay:.2s">Смотри, кто ворует твоё внимание:</div></div>'+
+      '<div class="result" style="--tc:var('+r.c+')">'+
+      '<div class="r-hero"><span class="k">Твой главный вор внимания</span><h3 class="r-name">'+r.name+'</h3><span class="r-tag">'+r.tag+'</span><span class="r-ref">'+r.ref+'</span></div>'+
+      '<p class="verse">'+r.verse+'</p>'+
+      '<div class="bars">'+sorted.map(k=>'<div class="bar" style="--tc:var('+T[k].c+')"><span>'+T[k].name+'</span><div class="track"><div class="fill" style="width:'+(cnt[k]/Q.length*100)+'%"></div></div><span class="pct">'+Math.round(cnt[k]/Q.length*100)+'%</span></div>').join('')+'</div>'+
+      '<div class="group">'+
+        '<div><h4>📱 Как это выглядит в телефоне</h4><p>'+r.phone+'</p></div>'+
+        '<div><h4>💪 Твоя сила</h4><p>'+r.strength+'</p></div>'+
+        '<div><h4>🌑 Твоя тень</h4><p>'+r.shadow+'</p></div>'+
+        '<div><h4>🔎 Глубже</h4><p>'+r.deep+'</p></div>'+
+      '</div>'+
+      '<div class="group egw"><div><span class="ref">Вести для молодёжи · '+e.ref+'</span>'+(e.start?'<span class="small muted">Начинается со слов: '+e.start+'</span>':'')+'<p>'+e.text+'</p></div></div>'+
+      '<div class="group">'+
+        '<div><h4>❓ Вопрос себе</h4><p class="r-q">'+r.q+'</p></div>'+
+        '<div><h4>🎯 Попробуй на неделе</h4><p>'+r.try+'</p></div>'+
+      '</div>'+
+      (cnt[sorted[1]]>0?'<p class="second">Второй по силе: <b>'+s.name+'</b> ('+s.tag.toLowerCase()+'). '+s.shadow+'</p>':'')+
+      '<div class="thread"><div class="b in tail">Сделай скриншот 📸 Потом иди в угол комнаты со своим типом.</div></div>'+
+      '<button class="btn tint" id="qAgain">Пройти заново</button></div>';
+    $('qAgain').onclick=()=>{qi=0;ans=[];quiz.innerHTML='';renderQ(true);};
+    quiz.scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'});
+  }
+  renderQ(false);
+
+  /* ================= 03 LIFE ================= */
+  const TOTAL=900, cellsEl=$('cells');
+  cellsEl.innerHTML=Array.from({length:TOTAL},()=>'<i></i>').join('');
+  const cells=[...cellsEl.children];
+  const CATS=[
+    {k:'past',name:'Уже прожито',sw:'var(--c-past)'},
+    {k:'sleep',name:'Сон',sw:'var(--c-sleep)'},
+    {k:'food',name:'Еда',sw:'var(--c-food)'},
+    {k:'work',name:'Учёба и работа',sw:'var(--c-work)'},
+    {k:'road',name:'Дорога и быт',sw:'var(--c-road)'},
+    {k:'screen',name:'Экран для себя',sw:'var(--c-screen)'},
+    {k:'free',name:'Остаётся на всё остальное',sw:'transparent'}
+  ];
+  let L={step:0,counts:{},anim:null};
+  function setFill(el){ const p=(el.value-el.min)/(el.max-el.min)*100; el.style.setProperty('--p',p+'%'); }
+  function calcLife(){
+    const age=+$('age').value, sl=+$('sleep').value, sc=+$('scr').value;
+    ['age','sleep','scr'].forEach(id=>setFill($(id)));
+    $('ageOut').textContent=age; $('sleepOut').textContent=nf(sl,sl%1?1:0); $('scrOut').textContent=nf(sc,sc%1?1:0);
+    const past=age*12, rem=TOTAL-past;
+    const workMonths=Math.max(0,65-age)*12;
+    const c={past:past,
+      sleep:Math.round(rem*sl/24),
+      food:Math.round(rem*1.5/24),
+      work:Math.round(workMonths*40/168),
+      road:Math.round(rem*2/24),
+      screen:Math.round(rem*sc/24)};
+    c.free=Math.max(0,TOTAL-c.past-c.sleep-c.food-c.work-c.road-c.screen);
+    L.counts=c; L.age=age; L.sl=sl; L.sc=sc;
+  }
+  const yrs=m=>{const y=m/12; return nf(y,y<10?1:0)+' '+plural(Math.round(y),'год','года','лет');};
+  function stepText(s){
+    const c=L.counts, rem=TOTAL-c.past;
+    switch(s){
+      case 0: return ['Вот твоя жизнь до 75 лет.','900 клеточек, каждая — месяц. Кажется, что много.'];
+      case 1: return ['Уже прошло '+c.past+' '+plural(c.past,'месяц','месяца','месяцев')+'.','Осталось '+rem+'. Дальше считаем только их.'];
+      case 2: return ['Сон: '+yrs(c.sleep)+' 😴','По '+nf(L.sl,L.sl%1?1:0)+' ч в день. Это нужно и правильно, но это треть того, что осталось.'];
+      case 3: return ['Еда: '+yrs(c.food)+' 🍝','Всего полтора часа в день на завтрак, обед и ужин.'];
+      case 4: return ['Учёба и работа: '+yrs(c.work)+' 💼','40 часов в неделю до 65 лет.'];
+      case 5: return ['Дорога и быт: '+yrs(c.road)+' 🚇','Два часа в день: метро, душ, уборка, магазин. Для Москвы это даже мало.'];
+      case 6: return ['А теперь экран: '+yrs(c.screen)+' 📱','По '+nf(L.sc,L.sc%1?1:0)+' ч в день, только то, что для себя. Больше, чем на еду, дорогу и быт вместе.'];
+      default: return ['Остаётся '+c.free+' '+plural(c.free,'клеточка','клеточки','клеточек')+'. Около '+yrs(c.free)+'.','На Бога, жену или мужа, детей, друзей, служение, отдых, мечты. На всё, что мы называем главным.'];
+    }
+  }
+  function paintUpTo(step,animate){
+    cancelAnimationFrame(L.anim);
+    const order=['past','sleep','food','work','road','screen'];
+    const target=[]; let idx=0;
+    order.forEach((k,i)=>{ for(let n=0;n<L.counts[k]&&idx<TOTAL;n++){ target[idx++]= (i+1<=step)?k:null; } });
+    for(;idx<TOTAL;idx++) target[idx]=null;
+    const glow=step>=7;
+    if(!animate||reduce){
+      cells.forEach((el,i)=>{ if(target[i]) el.dataset.c=target[i]; else el.removeAttribute('data-c'); el.classList.toggle('free-glow',glow&&!target[i]); });
+      return;
+    }
+    const changes=[]; cells.forEach((el,i)=>{ if((el.dataset.c||null)!==target[i]) changes.push(i); });
+    const per=Math.max(4,Math.ceil(changes.length/45)); let p=0;
+    (function frame(){
+      for(let n=0;n<per&&p<changes.length;n++,p++){const i=changes[p]; if(target[i]) cells[i].dataset.c=target[i]; else cells[i].removeAttribute('data-c');}
+      if(p<changes.length) L.anim=requestAnimationFrame(frame);
+      else cells.forEach((el,i)=>el.classList.toggle('free-glow',glow&&!target[i]));
+    })();
+  }
+  function renderLife(animate){
+    const t=stepText(L.step);
+    $('stepText').innerHTML='<p class="big">'+esc(t[0])+'</p><p class="muted">'+esc(t[1])+'</p>'+(L.step>=7?'<p class="psalm">«Научи нас так счислять дни наши, чтобы нам приобрести сердце мудрое». Пс. 89:12</p>':'');
+    paintUpTo(Math.min(L.step,6),animate);
+    if(L.step>=7) paintUpTo(7,false);
+    $('lifeNext').disabled=L.step>=7;
+    $('lifeNext').textContent=L.step===6?'Сколько остаётся?':'Дальше';
+    $('legend').innerHTML=CATS.map((c,i)=>{
+      const vis = c.k==='free'? L.step>=7 : (i+1)<=L.step;
+      return '<div'+(vis?'':' hidden')+'><span class="sw" style="background:'+c.sw+(c.k==='free'?';box-shadow:inset 0 0 0 2px var(--c-free)':'')+'"></span><span>'+c.name+'</span><span>'+L.counts[c.k]+' мес.</span></div>';
+    }).join('');
+  }
+  $('lifeNext').onclick=()=>{ if(L.step<7){L.step++; renderLife(true);} };
+  $('lifeReset').onclick=()=>{ L.step=0; renderLife(false); };
+  ['age','sleep','scr'].forEach(id=>$(id).oninput=()=>{ calcLife(); renderLife(false); });
+  calcLife(); renderLife(false);
+
+  /* ================= 04 QUESTIONS ================= */
+  const QS=[
+    ['Если внимание — это форма любви, то кого или что ты на этой неделе любил больше всего? Суди по экранному времени, а не по словам.',''],
+    ['Марфу отвлекало не развлечение, а служение самому Иисусу. Где у нас в общине служение мешает быть с Богом?','Лк. 10:38–42'],
+    ['Иисусу говорят «все ищут Тебя», а Он уходит в другие селения. Почему это не равнодушие? Можно ли нам так?','Мк. 1:35–38'],
+    ['Исав продал первородство не потому, что не ценил его, а потому, что был голоден прямо сейчас. Какое «первородство» мы отдаём за «ещё одно видео»?','Быт. 25:29–34'],
+    ['Падение Давида началось не со взгляда, а с того, что он остался дома, когда должен был быть в походе. Где ты сейчас «остался дома»?','2 Цар. 11:1–2'],
+    ['Скука — враг или дверь? Илия услышал Бога не в буре и не в огне, а в тихом веянии. Когда ты последний раз давал Богу шанс заговорить в тишине?','3 Цар. 19:11–12'],
+    ['В «Вестях для молодёжи» есть проверка: можешь ли ты после того, что читал или смотрел, открыть Библию и читать её с интересом? Что у тебя проходит эту проверку, а что нет?','Вести для молодёжи, гл. 88'],
+    ['Почему Бог сначала освятил время, а не место? Что это говорит о том, чем мы на самом деле владеем?','Быт. 2:3']
+  ];
+  $('qsThread').innerHTML=QS.map((q,i)=>'<div class="b in tail"><span class="num">'+(i+1)+'.</span>'+esc(q[0])+(q[1]?'<span class="ref">'+esc(q[1])+'</span>':'')+'</div>').join('');
+
+  /* ================= 05 CHALLENGE ================= */
+  const CH=[
+    ['🚶 10 минут без входящего','Каждый день прогулка или дорога без наушников и ленты. Только ты, мысли и молитва.'],
+    ['🌅 Первый час — не телефону','Утром берёшь телефон только после молитвы и завтрака.'],
+    ['🔕 Сообщения по расписанию','Уведомления чатов выключены, отвечаешь три раза в день.'],
+    ['📖 Одна вещь вглубь','Вместо десяти коротких роликов одна глава, статья или проповедь целиком.'],
+    ['🗑️ Минус одно приложение','Удаляешь на неделю одно приложение с короткими видео или игру.'],
+    ['🕯️ Суббота без лент','С заката пятницы до заката субботы никаких лент и рекомендаций. Звонки и сообщения близким можно.']
+  ];
+  const CHECK='<svg viewBox="0 0 14 14"><path d="M2.5 7.5 5.5 10.5 11.5 3.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  let pick=-1; try{const v=localStorage.getItem('vn-ch'); if(v!==null) pick=+v;}catch(e){}
+  function renderCh(fresh){
+    $('ch').innerHTML=CH.map((c,i)=>'<button class="ch-opt" role="radio" aria-checked="'+(i===pick)+'" data-i="'+i+'"><span><b>'+c[0]+'</b><span class="d">'+c[1]+'</span></span><span class="check">'+CHECK+'</span></button>').join('');
+    $('ch').querySelectorAll('.ch-opt').forEach(b=>b.onclick=()=>{pick=+b.dataset.i; try{localStorage.setItem('vn-ch',pick)}catch(e){} renderCh(true);});
+    if(pick>=0&&CH[pick]){
+      $('pledge').hidden=false; $('pledgeT').textContent=CH[pick][0]; $('pledgeD').textContent=CH[pick][1];
+      if(fresh){ const b=$('pledgeB'); b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); $('pledge').scrollIntoView({block:'nearest',behavior:reduce?'auto':'smooth'}); }
+    } else $('pledge').hidden=true;
+  }
+  renderCh(false);
+
+  /* ---------- share ---------- */
+  $('share').onclick=async()=>{
+    const data={title:'Где твоё внимание?',text:'Пройди по станциям вместе с ведущим',url:location.href.split('#')[0]};
+    try{ if(navigator.share){ await navigator.share(data); return; } }catch(e){ return; }
+    try{ await navigator.clipboard.writeText(data.url); toast('Ссылка скопирована ✓'); }catch(e){ toast(data.url); }
+  };
+})();
+</script>
+</body>
+</html>
