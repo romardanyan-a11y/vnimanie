@@ -627,6 +627,7 @@ input[type=range]::-moz-range-thumb{width:28px;height:28px;border:0;border-radiu
     updateChrome(); renderPult();
   }
   function updateChrome(){
+    if(mode==='host'&&window.vnHost&&window.vnHost.onChange) window.vnHost.onChange();
     segs.forEach((s,i)=>s.classList.toggle('on',i<=Math.min(step,5)));
     $('topLbl').textContent=LABELS[step]; $('topNum').textContent=NUMS[step];
     const cnt=$('topCnt'), pos=step>=1&&step<=5?step+' из 5':'';
@@ -1242,6 +1243,12 @@ input[type=range]::-moz-range-thumb{width:28px;height:28px;border:0;border-radiu
     try{ await navigator.clipboard.writeText(data.url); toast('Ссылка скопирована ✓'); }catch(e){ toast(data.url); }
   };
   $('restart').onclick=()=>{ store.set('vn-max',0); maxStep=0; go(0); };
+
+  // host remote with the meeting plan lives in pult.js and is fetched only for the host hash
+  if(mode==='host'){
+    window.vnHost={ open(i){ broadcast(i); go(i); }, state(){ return {hostStep:hostStep,online:online,connected:connected}; }, sheet:openPult, onChange:null };
+    loadScript('pult.js?v=1').catch(()=>{});
+  }
 
   // start where the person left off
   if(step===6&&pick<0) step=5;
