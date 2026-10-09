@@ -82,7 +82,7 @@ img{max-width:100%}
 .small{font-size:14px}
 
 /* ---------- shell ---------- */
-.app{position:fixed;inset:0;display:grid;grid-template-rows:auto 1fr auto;z-index:1}
+.app{position:fixed;top:0;left:0;right:0;height:100vh;height:100dvh;display:grid;grid-template-rows:auto 1fr auto;z-index:1}
 .top{padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 10px;background:var(--glass);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--glass-line);z-index:3}
 .top-in{max-width:600px;margin:0 auto;display:grid;gap:9px}
 .segs{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
@@ -100,6 +100,7 @@ img{max-width:100%}
   visibility:hidden;opacity:0;transform:translateX(40px);transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s ease,visibility 0s linear .45s}
 .screen.back{transform:translateX(-40px)}
 .screen.active{visibility:visible;opacity:1;transform:none;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .35s ease,visibility 0s}
+.screen-in > *,.card > *,.result > *,.group > div{min-width:0}
 .screen-in{max-width:600px;margin:0 auto;padding:26px 16px 36px;display:grid;gap:16px;align-content:start;min-height:100%}
 
 .dock{padding:10px 16px calc(env(safe-area-inset-bottom,0px) + 12px);background:var(--glass);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-top:.5px solid var(--glass-line);z-index:3;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
@@ -249,7 +250,7 @@ body.busy .dock{transform:translateY(110%)}
 .result{display:grid;gap:18px;padding-top:6px}
 .r-hero{display:grid;gap:6px;padding:22px 20px;border-radius:22px;background:linear-gradient(140deg,color-mix(in srgb,var(--tc) 22%,transparent),color-mix(in srgb,var(--tc) 6%,transparent));border:.5px solid color-mix(in srgb,var(--tc) 35%,transparent)}
 .r-hero .k{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-.r-name{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,10vw,46px);line-height:1;letter-spacing:-.045em;color:var(--tc)}
+.r-name{font-family:var(--f-display);font-weight:800;font-size:clamp(24px,7.4vw,42px);line-height:1;letter-spacing:-.045em;color:var(--tc)}
 .r-tag{font-size:18px;font-weight:600}
 .r-ref{font-size:14px;color:var(--muted)}
 .verse{font-size:17px;font-style:italic;line-height:1.4;padding:14px 16px;border-radius:18px;background:var(--card2);border-left:4px solid var(--tc)}
@@ -317,6 +318,34 @@ input[type=range]::-moz-range-thumb{width:28px;height:28px;border:0;border-radiu
 .pledge .b.out{max-width:88%}
 .pledge .b .t{display:block;font-weight:700;font-size:18px;margin-bottom:2px}
 
+/* ---------- sync / host ---------- */
+.live{display:inline-flex;align-items:center;gap:6px}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 var(--green);animation:live 2s infinite}
+@keyframes live{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--green) 60%,transparent)}70%{box-shadow:0 0 0 6px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.host-chip{border:0;background:var(--grad);color:#fff;font-weight:700;font-size:12.5px;padding:5px 11px;border-radius:999px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.btn.waiting{background:var(--fill);color:var(--muted);box-shadow:none;cursor:default}
+.btn.waiting:active{transform:none}
+.wdots{display:inline-flex;gap:3px;margin-left:2px}
+.wdots i{width:5px;height:5px;border-radius:50%;background:currentColor;animation:dot 1.2s infinite}
+.wdots i:nth-child(2){animation-delay:.15s}.wdots i:nth-child(3){animation-delay:.3s}
+.solo{justify-self:center;font-size:14px;color:var(--muted);background:none;border:0;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px}
+.pult{position:fixed;inset:0;z-index:56;background:var(--shade);display:flex;align-items:flex-end;justify-content:center;animation:fade .2s}
+.pult-in{width:min(480px,100%);max-height:92vh;overflow:auto;background:var(--bg);border-radius:24px 24px 0 0;padding:10px 16px calc(env(safe-area-inset-bottom,0px) + 16px);display:grid;gap:14px;animation:up .32s cubic-bezier(.2,.9,.25,1)}
+.pult-in .grab{justify-self:center;width:38px;height:5px;border-radius:9px;background:var(--fill2)}
+.pult-head{display:flex;justify-content:space-between;align-items:center}
+.pult-head h3{font-family:var(--f-display);font-size:22px;letter-spacing:-.03em}
+.pult-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pult-st{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;width:100%;border:0;background:transparent;padding:14px 16px;font-size:16px;text-align:left;cursor:pointer;position:relative}
+.pult-st + .pult-st::before{content:"";position:absolute;top:0;left:16px;right:0;border-top:.5px solid var(--sep)}
+.pult-st .num{font-family:var(--f-display);font-size:12px;color:var(--muted);margin-right:8px}
+.pult-st.cur{color:var(--blue);font-weight:600}
+.pult-st.cur::after{content:"сейчас у всех";font-size:12px;font-weight:600;color:#fff;background:var(--blue);padding:3px 8px;border-radius:999px}
+.qr{position:fixed;inset:0;z-index:70;background:#fff;color:#000;display:grid;place-items:center;align-content:center;gap:18px;padding:24px;text-align:center;animation:fade .2s}
+.qr .code{width:min(78vw,70vh,520px);aspect-ratio:1}
+.qr .code svg,.qr .code img{width:100%;height:100%}
+.qr h3{font-family:var(--f-display);font-size:clamp(22px,5vw,40px);letter-spacing:-.03em}
+.qr p{font-size:clamp(14px,2.4vw,20px);color:#555;word-break:break-all}
+
 /* ---------- 06 wallpaper ---------- */
 .phone{justify-self:center;width:min(64vw,270px);aspect-ratio:1170/2532;border-radius:38px;padding:7px;background:#111;box-shadow:0 30px 60px rgba(0,0,0,.35),0 0 0 1.5px rgba(255,255,255,.08) inset;position:relative}
 .phone img,.phone .ph{display:block;width:100%;height:100%;border-radius:31px;object-fit:cover;background:var(--fill)}
@@ -365,13 +394,14 @@ input[type=range]::-moz-range-thumb{width:28px;height:28px;border:0;border-radiu
             <div class="from"><span class="ava host">👋</span>Ведущий</div>
             <div class="thread intro">
               <div class="b in">Привет! Сегодня телефон можно держать в руках 📱</div>
-              <div class="b in">Проходим станции по порядку. Когда я скажу «идём дальше» — жми кнопку внизу.</div>
+              <div class="b in">Проходим станции по порядку — ведущий будет открывать их по очереди.</div>
               <div class="b in tail">Если открыл заранее — подожди встречи. Не забегай вперёд, иначе испортишь себе первый эксперимент 😉</div>
               <div class="b out tail">Ок, жду 👌</div>
               <div class="delivered">Доставлено</div>
             </div>
           </div>
           <div class="tip"><span>📲</span><span><b>Совет:</b> нажми «Поделиться» → «На экран Домой». Откроется как приложение, без адресной строки.</span></div>
+          <button class="solo" id="solo" hidden>Ведущий не управляет с телефона? Листать самому</button>
         </div>
       </div>
     </section>
@@ -534,6 +564,26 @@ input[type=range]::-moz-range-thumb{width:28px;height:28px;border:0;border-radiu
     <button class="as-btn as-cancel" id="asNo">Подождать</button>
   </div>
 </div>
+<div class="pult" id="pult" hidden>
+  <div class="pult-in" role="dialog" aria-modal="true" aria-labelledby="pultT">
+    <span class="grab"></span>
+    <div class="pult-head"><h3 id="pultT">🎙 Пульт ведущего</h3><button class="link" id="pultClose">Готово</button></div>
+    <div class="pult-stats">
+      <div class="widget"><span class="n" id="pOnline">0</span><span class="l">ребят на связи</span></div>
+      <div class="widget"><span class="n" id="pConn" style="font-size:22px">…</span><span class="l">связь с сервером</span></div>
+    </div>
+    <div class="list" id="pList"></div>
+    <button class="btn grad wide" id="pQR">Показать QR-код для ребят</button>
+    <button class="btn tint wide" id="pCopy">Скопировать ссылку для ребят</button>
+    <p class="muted small center">Нажми на станцию — она сразу откроется у всех.<br>Ссылку с пультом ребятам не отправляй.</p>
+  </div>
+</div>
+<div class="qr" id="qr" hidden>
+  <h3>Заходи 👀</h3>
+  <div class="code" id="qrCode"></div>
+  <p id="qrUrl"></p>
+  <button class="btn" id="qrClose">Закрыть</button>
+</div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -556,43 +606,78 @@ input[type=range]::-moz-range-thumb{width:28px;height:28px;border:0;border-radiu
   if(!(step>=0&&step<=6)) step=0; if(!(maxStep>=step)) maxStep=step;
   const segs=[...$('segs').children];
 
-  function go(to,dir){
-    const from=step; step=to; maxStep=Math.max(maxStep,to);
+  // Sync modes: 'sync' follows the host's phone, 'manual' asks "did the host say so?", 'host' is the remote.
+  const ss={get(k){try{return sessionStorage.getItem(k)}catch(e){return null}},set(k,v){try{sessionStorage.setItem(k,v)}catch(e){}}};
+  const HOST_HASH='#pult-Zx83Lw';
+  if(location.hash===HOST_HASH) ss.set('vn-host','1');
+  const isHost=ss.get('vn-host')==='1';
+  let mode=isHost?'host':(ss.get('vn-solo')==='1'?'manual':'sync');
+  let hostStep=null, connected=false, online=0, pending=null;
+
+  function go(to){
+    step=to; maxStep=Math.max(maxStep,to);
     store.set('vn-step',step); store.set('vn-max',maxStep);
+    $('asheet').hidden=true;
     screens.forEach((s,i)=>{
       s.classList.toggle('active',i===step);
       s.classList.toggle('back',i<step);
     });
     screens[step].scrollTop=0;
     if(step===6) renderWallpaper();
-    updateChrome();
+    updateChrome(); renderPult();
   }
   function updateChrome(){
     segs.forEach((s,i)=>s.classList.toggle('on',i<=Math.min(step,5)));
     $('topLbl').textContent=LABELS[step]; $('topNum').textContent=NUMS[step];
-    $('topCnt').textContent=step>=1&&step<=5?step+' из 5':'';
+    const cnt=$('topCnt'), pos=step>=1&&step<=5?step+' из 5':'';
+    if(mode==='host') cnt.innerHTML='<button class="host-chip" id="hostChip">🎙 Пульт · '+online+'</button>';
+    else if(mode==='sync'&&connected) cnt.innerHTML='<span class="live"><i></i>'+(pos||'на связи')+'</span>';
+    else cnt.textContent=pos;
     $('prev').disabled=step===0;
+    $('solo').hidden=!(mode==='sync'&&step===0);
     const n=$('next');
-    n.disabled=false;
-    if(step===0) n.textContent='Начать →';
-    else if(step<5) n.textContent='Дальше →';
+    n.disabled=false; n.classList.remove('waiting');
+    if(mode==='sync'&&step<5&&step>=(hostStep==null?0:hostStep)){
+      n.classList.add('waiting'); n.innerHTML='Ждём ведущего<span class="wdots"><i></i><i></i><i></i></span>'; return;
+    }
+    if(step===0) n.textContent=mode==='host'?'Начать для всех →':'Начать →';
+    else if(step<5) n.textContent=mode==='host'?'Открыть всем станцию '+(step+1)+' →':'Дальше →';
     else if(step===5){ n.textContent='Сделать обои 🖼'; n.disabled=pick<0; }
     else n.textContent='Сохранить картинку ⬇';
+  }
+  // A step announced by the host (or our own echo when we are the host).
+  function applyHost(s){
+    hostStep=s;
+    if(mode==='host'){ if(step!==s&&!(step===6&&s===5)) go(s); else { updateChrome(); renderPult(); } return; }
+    if(mode!=='sync'){ updateChrome(); return; }
+    if(document.body.classList.contains('busy')){ pending=s; updateChrome(); return; }
+    if(step===6&&s===5){ updateChrome(); return; }
+    if(step!==s){ const fwd=s>step; go(s); if(fwd&&s>0) toast('Ведущий открыл станцию '+s+' 👉'); }
+    else updateChrome();
   }
   function askNext(to){
     $('asT').textContent=to===1?'Ведущий уже сказал начинать?':'Ведущий уже сказал идти дальше?';
     $('asYes').textContent=to===1?'Да, начинаем':'Да, идём дальше';
     $('asheet').hidden=false;
-    $('asYes').onclick=()=>{ $('asheet').hidden=true; go(to,1); };
+    $('asYes').onclick=()=>go(to);
   }
   $('asNo').onclick=()=>{$('asheet').hidden=true;};
   $('asheet').onclick=e=>{ if(e.target===$('asheet')) $('asheet').hidden=true; };
   $('next').onclick=()=>{
+    if($('next').classList.contains('waiting')){ toast('Ведущий ещё не открыл следующую станцию'); return; }
     if(step===6){ saveWallpaper(); return; }
     const to=step+1;
-    if(to<=5 && to>maxStep) askNext(to); else go(to,1);
+    if(mode==='host'&&to<=5){ broadcast(to); go(to); return; }
+    if(mode==='manual'&&to<=5&&to>maxStep){ askNext(to); return; }
+    go(to);
   };
-  $('prev').onclick=()=>{ if(step>0) go(step-1,-1); };
+  $('prev').onclick=()=>{
+    if(step===0) return;
+    if(mode==='host'&&step<=5) broadcast(step-1);
+    go(step-1);
+  };
+  $('solo').onclick=()=>{ ss.set('vn-solo','1'); mode='manual'; updateChrome(); toast('Ок, листаешь сам'); };
+  $('topCnt').onclick=e=>{ if(e.target.closest('#hostChip')) openPult(); };
 
   /* ================= 01 HUNT ================= */
   const hunt=$('hunt'), ROUND=30;
@@ -672,6 +757,7 @@ input[type=range]::-moz-range-thumb{width:28px;height:28px;border:0;border-radiu
     if(!$('sheet').hidden) closeSheet();
     if(H.stage==='r1'){H.r1=H.found;H.err1=H.err;H.stage='between';hBetween();}
     else {H.r2=H.found;H.err2=H.err;H.stage='done';hResult();}
+    if(pending!==null){ const p=pending; pending=null; applyHost(p); }
   }
   function scheduleNote(ms){ clearTimeout(H.nTimer); H.nTimer=setTimeout(()=>{ if(H.stage!=='r2')return; if($('sheet').hidden) showNote(); scheduleNote(3400+Math.random()*1600); },ms); }
   function showNote(){
@@ -860,6 +946,9 @@ input[type=range]::-moz-range-thumb{width:28px;height:28px;border:0;border-radiu
       '<div class="thread"><div class="b in tail">Сделай скриншот 📸 Потом иди в угол комнаты со своим типом.</div></div>'+
       '<button class="btn tint" id="qAgain">Пройти заново</button></div>';
     $('qAgain').onclick=()=>{qi=0;ans=[];quiz.innerHTML='';renderQ(true);};
+    // long names like «Наблюдатель» must fit the card on narrow phones
+    const nm=quiz.querySelector('.r-name'); let fs=parseFloat(getComputedStyle(nm).fontSize);
+    while(nm.scrollWidth>nm.clientWidth+1&&fs>18){ fs-=1; nm.style.fontSize=fs+'px'; }
     quiz.scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'});
   }
   renderQ(false);
@@ -1068,17 +1157,96 @@ input[type=range]::-moz-range-thumb{width:28px;height:28px;border:0;border-radiu
   }
   $('wpSave2').onclick=saveWallpaper;
 
+
+  /* ================= SYNC (public MQTT broker, no accounts) ================= */
+  const ROOM='vnimanie-molodezhka/q7Rm4kT9';
+  const BROKERS=['wss://broker.emqx.io:8084/mqtt','wss://test.mosquitto.org:8081'];
+  const STALE=8*3600e3, conns=[], seen={};
+  let lastT=0;
+  let myId=store.get('vn-id'); if(!myId){ myId=Math.random().toString(36).slice(2,10); store.set('vn-id',myId); }
+  const kidsUrl=()=>location.origin+location.pathname;
+  function loadScript(src){ return new Promise((res,rej)=>{ const el=document.createElement('script'); el.src=src; el.async=true; el.onload=res; el.onerror=rej; document.head.appendChild(el); }); }
+  function setConnected(){ const c=conns.some(x=>x.connected); if(c!==connected){ connected=c; updateChrome(); renderPult(); } }
+  function onMessage(topic,buf){
+    if(topic===ROOM+'/who'){ if(mode!=='host') setTimeout(hi,Math.random()*1500); return; }
+    let d; try{ d=JSON.parse(buf.toString()); }catch(e){ return; }
+    if(!d||typeof d!=='object') return;
+    if(topic===ROOM+'/state'){
+      if(typeof d.s!=='number'||d.s<0||d.s>5||typeof d.t!=='number') return;
+      if(d.t<=lastT) return;          // same message from the second broker, or an older one
+      lastT=d.t;
+      if(Date.now()-d.t>STALE) return; // left over from a previous meeting
+      applyHost(d.s);
+    } else if(topic===ROOM+'/hi'&&mode==='host'&&typeof d.id==='string'){ seen[d.id]=Date.now(); countOnline(); }
+  }
+  function countOnline(){
+    const now=Date.now(); let n=0;
+    for(const k in seen){ if(now-seen[k]<55000) n++; else delete seen[k]; }
+    if(n!==online){ online=n; updateChrome(); renderPult(); }
+  }
+  function hi(){ const m=JSON.stringify({id:myId,t:Date.now()}); conns.forEach(c=>{ if(c.connected) c.publish(ROOM+'/hi',m,{qos:0}); }); }
+  function broadcast(s){
+    const t=Date.now(), m=JSON.stringify({s:s,t:t}); let sent=false;
+    conns.forEach(c=>{ if(c.connected){ c.publish(ROOM+'/state',m,{qos:1,retain:true}); sent=true; } });
+    lastT=t; hostStep=s;
+    if(!sent) toast('Нет связи — переподключаюсь…');
+  }
+  function fallback(){ if(mode==='sync'){ mode='manual'; updateChrome(); } }
+  async function startSync(){
+    if(mode==='manual') return;
+    try{ await loadScript('https://cdn.jsdelivr.net/npm/mqtt@5.10.1/dist/mqtt.min.js'); }
+    catch(e){ try{ await loadScript('https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js'); }catch(e2){ fallback(); return; } }
+    BROKERS.forEach(url=>{
+      let c;
+      try{ c=mqtt.connect(url,{connectTimeout:8000,reconnectPeriod:5000,keepalive:30,clean:true,clientId:'vn_'+myId+'_'+Math.random().toString(36).slice(2,6)}); }catch(e){ return; }
+      c.on('connect',()=>{
+        if(mode==='manual'&&!isHost&&ss.get('vn-solo')!=='1') mode='sync';
+        c.subscribe(ROOM+'/state',{qos:1});
+        if(mode==='host'){ c.subscribe(ROOM+'/hi',{qos:0}); c.publish(ROOM+'/who','?',{qos:0}); }
+        else { c.subscribe(ROOM+'/who',{qos:0}); hi(); }
+        setConnected();
+      });
+      c.on('message',onMessage);
+      ['close','offline','error'].forEach(ev=>c.on(ev,()=>setConnected()));
+      conns.push(c);
+    });
+    setTimeout(()=>{ if(!conns.some(c=>c.connected)) fallback(); },10000);
+    if(mode==='host') setInterval(countOnline,5000); else setInterval(hi,20000);
+  }
+
+  /* ---------- host remote ---------- */
+  function openPult(){ $('pult').hidden=false; renderPult(); }
+  function renderPult(){
+    if(!$('pult')||$('pult').hidden) return;
+    $('pOnline').textContent=online;
+    $('pConn').textContent=connected?'есть ✓':'нет ✕';
+    $('pList').innerHTML=LABELS.slice(0,6).map((l,i)=>'<button class="pult-st'+(hostStep===i?' cur':'')+'" data-i="'+i+'"><span><span class="num">'+(i?'0'+i:'··')+'</span>'+l+'</span></button>').join('');
+    $('pList').querySelectorAll('.pult-st').forEach(b=>b.onclick=()=>{ const i=+b.dataset.i; broadcast(i); go(i); toast(i?'Станция '+i+' открыта у всех':'Все вернулись на старт'); });
+  }
+  $('pultClose').onclick=()=>{$('pult').hidden=true;};
+  $('pult').onclick=e=>{ if(e.target===$('pult')) $('pult').hidden=true; };
+  $('pCopy').onclick=async()=>{ try{ await navigator.clipboard.writeText(kidsUrl()); toast('Ссылка для ребят скопирована ✓'); }catch(e){ toast(kidsUrl()); } };
+  $('pQR').onclick=async()=>{
+    try{ if(!window.qrcode) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js'); }catch(e){ toast('Не удалось загрузить QR'); return; }
+    const q=qrcode(0,'M'); q.addData(kidsUrl()); q.make();
+    $('qrCode').innerHTML='<img alt="QR-код ссылки" style="image-rendering:pixelated" src="'+q.createDataURL(10,2)+'">';
+    $('qrUrl').textContent=kidsUrl().replace(/^https?:\/\//,'');
+    $('qr').hidden=false;
+  };
+  $('qrClose').onclick=()=>{$('qr').hidden=true;};
+
   /* ---------- share / restart ---------- */
   $('share').onclick=async()=>{
     const data={title:'Где твоё внимание?',text:'Пройди по станциям вместе с ведущим',url:location.href.split('#')[0]};
     try{ if(navigator.share){ await navigator.share(data); return; } }catch(e){ return; }
     try{ await navigator.clipboard.writeText(data.url); toast('Ссылка скопирована ✓'); }catch(e){ toast(data.url); }
   };
-  $('restart').onclick=()=>{ store.set('vn-max',0); maxStep=0; go(0,-1); };
+  $('restart').onclick=()=>{ store.set('vn-max',0); maxStep=0; go(0); };
 
   // start where the person left off
   if(step===6&&pick<0) step=5;
-  go(step,0);
+  go(step);
+  startSync();
 })();
 </script>
 </body>
